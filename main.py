@@ -44,6 +44,28 @@ def enough_resources(coffee):
     return True
 
 
+def get_coins():
+    print("Please insert coins.")
+    total = int(input("how many quarters?: ")) * 0.25
+    total += int(input("how many dimes?: ")) * 0.1
+    total += int(input("how many nickels?: ")) * 0.05
+    total += int(input("how many pennies?: ")) * 0.01
+    return total
+
+
+def is_payment_successful(money_paid, drink_cost):
+    if money_paid >= drink_cost:
+        global profit
+        profit += drink_cost
+        if money_paid - drink_cost != 0:
+            difference = money_paid - drink_cost
+            print(f"Here is ${round(difference,2)} dollars in change")
+        return True
+    else:
+        print("Sorry that is not enough money")
+        return False
+
+
 while in_use:
 
     choice = input("What would you like? (espresso/latte/cappuccino): ").lower()
@@ -56,27 +78,6 @@ while in_use:
         print(f"money: ${profit}")
     else:
         drink = MENU[choice]
-        enough_resources(drink['ingredients'])
-    #
-    # is_choice_correct = False
-    #
-    # while choice != "off" and choice != "report" and choice not in coffees:
-    #     if choice not in coffees:
-    #         print("please enter a valid option")
-    #         choice = input("What would you like? (espresso/latte/cappuccino): ").lower()
-    #     else:
-    #         is_choice_correct = True
-    #
-    # if choice == "off":
-    #     in_use = False
-    #
-    # elif choice == "report":
-    #     report(resources)
-    #
-    # if choice in coffees:
-    #     print("Please insert coins.")
-    #     quarters = int(input("How many quarters?: "))
-    #     dimes = int(input("How many dimes?: "))
-    #     quarters = int(input("How many quarters?: "))
-    #     quarters = int(input("How many quarters?: "))
-    #
+        if enough_resources(drink['ingredients']):
+            payment = get_coins()
+            is_payment_successful(payment, drink["cost"])
