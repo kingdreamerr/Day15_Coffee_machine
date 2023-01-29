@@ -57,13 +57,19 @@ def is_payment_successful(money_paid, drink_cost):
     if money_paid >= drink_cost:
         global profit
         profit += drink_cost
-        if money_paid - drink_cost != 0:
-            difference = money_paid - drink_cost
-            print(f"Here is ${round(difference,2)} dollars in change")
+        difference = money_paid - drink_cost
+        print(f"Here is ${round(difference,2)} dollars in change")
         return True
     else:
         print("Sorry that is not enough money")
         return False
+
+
+def make_coffee(drink_name, order_ingredients):
+    """Remove the required resources"""
+    for items in order_ingredients:
+        resources[items] -= order_ingredients[items]
+    print(f"Here is your {drink_name} enjoy!")
 
 
 while in_use:
@@ -80,4 +86,6 @@ while in_use:
         drink = MENU[choice]
         if enough_resources(drink['ingredients']):
             payment = get_coins()
-            is_payment_successful(payment, drink["cost"])
+            if is_payment_successful(payment, drink["cost"]):
+                make_coffee(choice, drink['ingredients'])
+
