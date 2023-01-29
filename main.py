@@ -36,9 +36,12 @@ resources = {
 in_use = True
 
 
-def report(data):
-    for item in data:
-        print(f'{item}: {data[item]}')
+def enough_resources(coffee):
+    for d_items in coffee:
+        if coffee[d_items] >= resources[d_items]:
+            print(f"Sorry there is not enough {d_items}")
+            return False
+    return True
 
 
 while in_use:
@@ -51,7 +54,9 @@ while in_use:
         print(f"milk: {resources['milk']}ml")
         print(f"coffee: {resources['coffee']}g")
         print(f"money: ${profit}")
-
+    else:
+        drink = MENU[choice]
+        enough_resources(drink['ingredients'])
     #
     # is_choice_correct = False
     #
