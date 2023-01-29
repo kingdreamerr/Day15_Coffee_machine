@@ -42,26 +42,36 @@ def report(data):
 
 
 while in_use:
+
     choice = input("What would you like? (espresso/latte/cappuccino): ").lower()
-
-    is_choice_correct = False
-
-    while choice != "off" and choice != "report" and choice not in coffees:
-        if choice not in coffees:
-            print("please enter a valid option")
-            choice = input("What would you like? (espresso/latte/cappuccino): ").lower()
-        else:
-            is_choice_correct = True
-
     if choice == "off":
         in_use = False
     elif choice == "report":
-        report(resources)
+        print(f"water: {resources['water']}ml")
+        print(f"milk: {resources['milk']}ml")
+        print(f"coffee: {resources['coffee']}g")
+        print(f"money: ${profit}")
 
-    if choice in coffees:
-        print("Please insert coins.")
-        quarters = int(input("How many quarters?: "))
-        dimes = int(input("How many dimes?: "))
-        quarters = int(input("How many quarters?: "))
-        quarters = int(input("How many quarters?: "))
-
+    #
+    # is_choice_correct = False
+    #
+    # while choice != "off" and choice != "report" and choice not in coffees:
+    #     if choice not in coffees:
+    #         print("please enter a valid option")
+    #         choice = input("What would you like? (espresso/latte/cappuccino): ").lower()
+    #     else:
+    #         is_choice_correct = True
+    #
+    # if choice == "off":
+    #     in_use = False
+    #
+    # elif choice == "report":
+    #     report(resources)
+    #
+    # if choice in coffees:
+    #     print("Please insert coins.")
+    #     quarters = int(input("How many quarters?: "))
+    #     dimes = int(input("How many dimes?: "))
+    #     quarters = int(input("How many quarters?: "))
+    #     quarters = int(input("How many quarters?: "))
+    #
